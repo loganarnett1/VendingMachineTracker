@@ -7,22 +7,19 @@
     <h1 class="display-4">Welcome</h1>
     <p>Vending Machine Edit Page</p>
     <form asp-controller="VendingMachine" asp-action="Edit" method="post">
-        <!--<input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="vendingMachineItems" />-->
         <div class="mb-2">
-            <label asp-for="name", class="form-label" />
-            <input asp-for="name", class="form-control" type="text" />
+            <label asp-for="name" class="form-label" />
+            <input asp-for="name" class="form-control" type="text" />
             <span asp-validation-for="name" class="text-danger"/>
         </div>
         <div class="mb-2">
-            <label asp-for="locationDescription" , class="form-label" />
-            <input asp-for="locationDescription" , class="form-control" type="text" />
+            <label asp-for="locationDescription" class="form-label" />
+            <input asp-for="locationDescription" class="form-control" type="text" />
             <span asp-validation-for="locationDescription" class="text-danger" />
         </div>
         <div class="mb-2">
             <button type="submit" class="btn btn-dark mr-2">Update</button>
-            <a asp-controller="VendingMachine" asp-action="List" class="btn btn-dark">Cancel</a>
+            <a asp-controller="VendingMachine" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-dark">Cancel</a>
         </div>
-
     </form>
 </div>

@@ -18,10 +18,7 @@ namespace VendingMachineTracker.Controllers
         public IActionResult List() => View("Views/Home/VendingMachine/List.cshtml", vendingMachineService.getVendingMachines());
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            return View("Views/Home/VendingMachine/Add.cshtml");
-        }
+        public IActionResult Add() => View("Views/Home/VendingMachine/Add.cshtml");
 
         [HttpGet]
         public IActionResult Details(int id) => View("Views/Home/VendingMachine/Details.cshtml", vendingMachineService.getVendingMachineById(id));
@@ -30,10 +27,23 @@ namespace VendingMachineTracker.Controllers
         public IActionResult Edit(int id) => View("Views/Home/VendingMachine/Edit.cshtml", vendingMachineService.getVendingMachineById(id));
 
         [HttpPost]
+        public RedirectToActionResult Add(VendingMachine newVendingMachine)
+        {
+            vendingMachineService.addVendingMachine(newVendingMachine);
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
         public RedirectToActionResult Edit(VendingMachine newVendingMachine)
         {
             vendingMachineService.modifyVendingMachine(newVendingMachine);
-            //return RedirectToAction("List", vendingMachineService.getVendingMachines());
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Delete(int id)
+        {
+            vendingMachineService.removeVendingMachine(id);
             return RedirectToAction("List");
         }
     }

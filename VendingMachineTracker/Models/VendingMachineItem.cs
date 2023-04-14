@@ -5,17 +5,17 @@ namespace VendingMachineTracker.Models
 {
     public class VendingMachineItem
     {
-        public VendingMachineItem(int itemId, int vendingMachineId)
-        {
-            this.itemId = itemId;
-            this.vendingMachineId = vendingMachineId;
-        }
-
         public void updateValues(int price)
         {
             this.price = price;
         }
 
+        public string getPriceString()
+        {
+            string cents = $"{(this.price % 4) * 25}";
+            if(cents.Length == 1) { cents = $"0{cents}"; }
+            return $"${Math.Floor(this.price / 4.0f)}.{cents}";
+        } 
 
         [Key]
         public int Id { get; set; }

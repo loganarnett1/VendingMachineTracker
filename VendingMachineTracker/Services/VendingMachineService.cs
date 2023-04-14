@@ -60,15 +60,15 @@ namespace VendingMachineTracker.Services
             return existingVendingMachineItem;
         }
 
-        public void removeVendingMachine(VendingMachine vendingMachine)
+        public void removeVendingMachine(int id)
         {
-            context.vendingMachines.Remove(vendingMachine);
+            context.vendingMachines.Remove(context.vendingMachines.Find(id));
             context.SaveChanges();
         }
 
-        public void removeVendingMachineItem(VendingMachineItem vendingMachineItem)
+        public void removeVendingMachineItem(int id)
         {
-            context.vendingMachineItems.Remove(vendingMachineItem);
+            context.vendingMachineItems.Remove(context.vendingMachineItems.Find(id));
             context.SaveChanges();
         }
 

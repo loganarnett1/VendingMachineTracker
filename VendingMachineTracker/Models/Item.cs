@@ -5,11 +5,6 @@ namespace VendingMachineTracker.Models
 {
     public class Item
     {
-        public Item(string name)
-        {
-            this.name = name;
-        }
-
         public void updateValues(string name)
         {
             this.name = name;
@@ -20,6 +15,6 @@ namespace VendingMachineTracker.Models
 
         public string name { get; set; }
 
-        public ICollection<VendingMachineItem> vendingMachineItems { get; set; }
+        public ICollection<VendingMachineItem> vendingMachineItems { get; set; } = null!;
     }
 }

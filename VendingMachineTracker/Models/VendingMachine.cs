@@ -5,12 +5,6 @@ namespace VendingMachineTracker.Models
 {
     public class VendingMachine
     {
-        /*public VendingMachine(string name, string locationDescription)
-        {
-            this.name = name;
-            this.locationDescription = locationDescription;
-        }*/
-
         public void updateValues(string name, string locationDescription)
         {
             this.name = name;
@@ -21,6 +15,6 @@ namespace VendingMachineTracker.Models
         public int Id { get; set; }
         public string name { get; set; }
         public string locationDescription { get; set; }
-        public ICollection<VendingMachineItem> vendingMachineItems { get; set; }
+        public ICollection<VendingMachineItem> vendingMachineItems { get; set; } = null!;
     }
 }

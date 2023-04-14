@@ -34,9 +34,9 @@ namespace VendingMachineTracker.Services
             return existingItem;
         }
 
-        public void removeItem(Item item)
+        public void removeItem(int id)
         {
-            context.items.Remove(item);
+            context.items.Remove(context.items.Find(id));
             context.SaveChanges();
         }
 
