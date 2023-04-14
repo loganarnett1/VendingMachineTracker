@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using VendingMachineTracker.Models;
+using VendingMachineTracker.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<VendingMachineTrackerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("VendingMachineTrackerContext")));
+
+builder.Services.AddScoped<ItemService>();
+builder.Services.AddScoped<VendingMachineService>();
 
 var app = builder.Build();
 
@@ -23,5 +33,13 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "VendingMachine",
+    pattern: "VendingMachine/{action}/{id?}");
+
+app.MapControllerRoute(
+    name: "Item",
+    pattern: "Item/{action}/{id?}");
 
 app.Run();
