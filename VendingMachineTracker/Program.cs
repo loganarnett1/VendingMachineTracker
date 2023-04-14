@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VendingMachineTracker.Models;
+using VendingMachineTracker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<VendingMachineTrackerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VendingMachineTrackerContext")));
+
+builder.Services.AddScoped<ItemService>();
+builder.Services.AddScoped<VendingMachineService>();
 
 var app = builder.Build();
 

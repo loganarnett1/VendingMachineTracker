@@ -1,8 +1,31 @@
-﻿@{
+﻿@model IEnumerable<VendingMachine>
+@{
     ViewData["Title"] = "Vending Machine List";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Vending Machine List Page</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Machine Name</th>
+                <th>Machine Location</th>
+                <th class="d-none">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (VendingMachine vendingMachine in Model)
+            {
+                <tr>
+                    <td>@vendingMachine.name</td>
+                    <td>@vendingMachine.locationDescription</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="VendingMachine" asp-action="Details" asp-route-id="@vendingMachine.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-area="" asp-controller="VendingMachine" asp-action="Add">New</a>
 </div>

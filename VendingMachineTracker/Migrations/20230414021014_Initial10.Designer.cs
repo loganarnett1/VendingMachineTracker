@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VendingMachineTracker.Models;
 
@@ -10,9 +11,10 @@ using VendingMachineTracker.Models;
 namespace VendingMachineTracker.Migrations
 {
     [DbContext(typeof(VendingMachineTrackerContext))]
-    partial class VendingMachineTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20230414021014_Initial10")]
+    partial class Initial10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

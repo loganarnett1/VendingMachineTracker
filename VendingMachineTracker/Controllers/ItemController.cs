@@ -1,9 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VendingMachineTracker.Services;
 
 namespace VendingMachineTracker.Controllers
 {
     public class ItemController : Controller
     {
+        private ItemService itemService;
+        private VendingMachineService vendingMachineService;
+        public ItemController(ItemService itemService, VendingMachineService vendingMachineService)
+        {
+            this.itemService = itemService;
+            this.vendingMachineService = vendingMachineService;
+        }
+
         public IActionResult List()
         {
             return View("Views/Home/Item/List.cshtml");

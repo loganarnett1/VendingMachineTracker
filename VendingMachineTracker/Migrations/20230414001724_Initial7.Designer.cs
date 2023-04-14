@@ -11,8 +11,8 @@ using VendingMachineTracker.Models;
 namespace VendingMachineTracker.Migrations
 {
     [DbContext(typeof(VendingMachineTrackerContext))]
-    [Migration("20230413222341_Initial")]
-    partial class Initial
+    [Migration("20230414001724_Initial7")]
+    partial class Initial7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,13 +38,6 @@ namespace VendingMachineTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("items");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            name = "Chips"
-                        });
                 });
 
             modelBuilder.Entity("VendingMachineTracker.Models.VendingMachine", b =>
@@ -66,14 +59,6 @@ namespace VendingMachineTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("vendingMachines");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            locationDescription = "Near the stairs",
-                            name = "Machine 1"
-                        });
                 });
 
             modelBuilder.Entity("VendingMachineTracker.Models.VendingMachineItem", b =>
@@ -96,7 +81,7 @@ namespace VendingMachineTracker.Migrations
 
                     b.HasIndex("vendingMachineId");
 
-                    b.ToTable("VendingMachineItem");
+                    b.ToTable("vendingMachineItems");
                 });
 
             modelBuilder.Entity("VendingMachineTracker.Models.VendingMachineItem", b =>

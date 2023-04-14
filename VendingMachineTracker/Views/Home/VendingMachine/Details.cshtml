@@ -1,8 +1,16 @@
-﻿@{
+﻿@model VendingMachine
+@{
     ViewData["Title"] = "Vending Machine Details";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Vending Machine Details Page</p>
+    <p>Vending Machine Details Page of id: @Model.Id</p>
+    <a asp-controller="VendingMachine" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit Vending Machine</a>
+    <ul>
+        @foreach (VendingMachineItem item in Model.vendingMachineItems)
+        {
+            <li>@item.item.name</li>
+        }
+    </ul>
 </div>

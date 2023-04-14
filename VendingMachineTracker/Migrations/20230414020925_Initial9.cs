@@ -4,7 +4,7 @@
 
 namespace VendingMachineTracker.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initial9 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

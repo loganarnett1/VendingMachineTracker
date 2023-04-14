@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VendingMachineTracker.Models;
 
@@ -10,9 +11,10 @@ using VendingMachineTracker.Models;
 namespace VendingMachineTracker.Migrations
 {
     [DbContext(typeof(VendingMachineTrackerContext))]
-    partial class VendingMachineTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20230414003309_Initial8")]
+    partial class Initial8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,9 +70,6 @@ namespace VendingMachineTracker.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("itemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("price")
                         .HasColumnType("int");
 
                     b.Property<int>("vendingMachineId")

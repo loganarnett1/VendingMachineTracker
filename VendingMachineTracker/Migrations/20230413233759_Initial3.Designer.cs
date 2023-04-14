@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VendingMachineTracker.Models;
 
@@ -10,9 +11,10 @@ using VendingMachineTracker.Models;
 namespace VendingMachineTracker.Migrations
 {
     [DbContext(typeof(VendingMachineTrackerContext))]
-    partial class VendingMachineTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20230413233759_Initial3")]
+    partial class Initial3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +38,13 @@ namespace VendingMachineTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("items");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            name = "Chips"
+                        });
                 });
 
             modelBuilder.Entity("VendingMachineTracker.Models.VendingMachine", b =>
@@ -57,6 +66,14 @@ namespace VendingMachineTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("vendingMachines");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            locationDescription = "Near the stairs",
+                            name = "Machine 1"
+                        });
                 });
 
             modelBuilder.Entity("VendingMachineTracker.Models.VendingMachineItem", b =>
@@ -70,9 +87,6 @@ namespace VendingMachineTracker.Migrations
                     b.Property<int>("itemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
                     b.Property<int>("vendingMachineId")
                         .HasColumnType("int");
 
@@ -82,7 +96,7 @@ namespace VendingMachineTracker.Migrations
 
                     b.HasIndex("vendingMachineId");
 
-                    b.ToTable("vendingMachineItems");
+                    b.ToTable("VendingMachineItem");
                 });
 
             modelBuilder.Entity("VendingMachineTracker.Models.VendingMachineItem", b =>
