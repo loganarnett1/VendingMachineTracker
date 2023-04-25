@@ -27,6 +27,11 @@ namespace VendingMachineTracker.Controllers
             //var abc2 = itemService.addVendingMachineItem(new VendingMachineItem(2, 2));
             return View();
         }
+        
+        public IActionResult About()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
