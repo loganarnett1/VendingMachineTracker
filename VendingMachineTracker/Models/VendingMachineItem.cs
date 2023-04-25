@@ -15,7 +15,7 @@ namespace VendingMachineTracker.Models
             string cents = $"{(this.price % 4) * 25}";
             if(cents.Length == 1) { cents = $"0{cents}"; }
             return $"${Math.Floor(this.price / 4.0f)}.{cents}";
-        } 
+        }
 
         [Key]
         public int Id { get; set; }
