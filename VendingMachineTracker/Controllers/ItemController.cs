@@ -1,33 +1,76 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VendingMachineTracker.Models;
 using VendingMachineTracker.Services;
 
 namespace VendingMachineTracker.Controllers
 {
     public class ItemController : Controller
     {
-        private ItemService itemService;
-        private VendingMachineService vendingMachineService;
-        public ItemController(ItemService itemService, VendingMachineService vendingMachineService)
+        private readonly IItemRepository _itemRepository;
+
+        public ItemController(IItemRepository itemRepository)
         {
-            this.itemService = itemService;
-            this.vendingMachineService = vendingMachineService;
+            _itemRepository = itemRepository;
         }
 
-        public IActionResult List()
+        public IActionResult Index()
         {
-            return View("Views/Home/Item/List.cshtml");
+            var items = _itemRepository.GetItems();
+            return View(items);
         }
+
         public IActionResult Add()
         {
-            return View("Views/Home/Item/Add.cshtml");
+            return View();
         }
-        public IActionResult Details()
+
+        [HttpPost]
+        public IActionResult Add(Item item)
         {
-            return View("Views/Home/Item/Details.cshtml");
+            if (ModelState.IsValid)
+            {
+                _itemRepository.AddItem(item);
+                return RedirectToAction("Index");
+            }
+            return View(item);
         }
-        public IActionResult Edit()
+
+        public IActionResult Edit(int id)
         {
-            return View("Views/Home/Item/Edit.cshtml");
+            Item item = _itemRepository.GetItemById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Item item)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemRepository.UpdateItem(item);
+                return RedirectToAction("Index");
+            }
+            return View(item);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Item item = _itemRepository.GetItemById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _itemRepository.DeleteItem(id);
+            return RedirectToAction("Index");
         }
     }
 }
