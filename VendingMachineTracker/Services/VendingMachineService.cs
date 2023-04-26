@@ -60,6 +60,15 @@ namespace VendingMachineTracker.Services
             return existingVendingMachineItem;
         }
 
+        public List<VendingMachineItem> setVendingMachineItems(List<VendingMachineItem> items, int vendingMachineId)
+        {
+            context.vendingMachineItems.RemoveRange(getVendingMachineItems(vendingMachineId));
+            context.vendingMachineItems.AddRange(items);
+            context.SaveChanges();
+
+            return items;
+        }
+
         public void removeVendingMachine(int id)
         {
             context.vendingMachines.Remove(context.vendingMachines.Find(id));

@@ -30,7 +30,46 @@
                     <td>@item.getPriceString()</td>
                 </tr>
             }
+            <tr>
+                <td>
+                    <select id="itemSelect">
+                        <option label=" "></option>
+                        @foreach (var item in ViewBag.items)
+                        {
+                            <option value=@item.Id>@item.name</option>
+                        }
+                    </select>
+                </td>
+                <td><input id="priceSelect" type="number" /></td>
+            </tr>
         </tbody>
     </table>
-    <!--<a class="btn btn-primary" asp-controller="VendingMachine" asp-action="">Add Item</a>-->
+
+    <button id="addButton" type="submit" class="btn btn-primary">Add</button>
 </div>
+
+@section Scripts {
+    <script>
+        $("#addButton").click(() => {
+            if ($("#itemSelect").val() !== undefined && $("#itemSelect").val() !== null && $("#itemSelect").val() !== "" &&
+                $("#priceSelect").val() !== undefined && $("#priceSelect").val() !== null && $("#priceSelect").val() !== "") {
+                let vendingMachineItem = {
+                    itemId: $("#itemSelect").val(),
+                    vendingMachineId: @Model.Id,
+                    price: $("#priceSelect").val()
+                };
+
+                $.ajax({
+                    type: `POST`,
+                    url: `/VendingMachine/AddItemToMachine`,
+                    data: vendingMachineItem,
+                    success: function () {
+                        $("#itemSelect").val('');
+                        $("#priceSelect").val('');
+                        document.location.reload();
+                    }
+                })
+            }
+        });
+    </script>
+}
