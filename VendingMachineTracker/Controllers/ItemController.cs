@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using VendingMachineTracker.Models;
 using VendingMachineTracker.Services;
 
@@ -6,16 +6,16 @@ namespace VendingMachineTracker.Controllers
 {
     public class ItemController : Controller
     {
-        private readonly IItemRepository _itemRepository;
+        private readonly ItemService _itemService;
 
-        public ItemController(IItemRepository itemRepository)
+        public ItemController(ItemService itemService)
         {
-            _itemRepository = itemRepository;
+            _itemService = itemService;
         }
 
         public IActionResult Index()
         {
-            var items = _itemRepository.GetItems();
+            var items = _itemService.getAllItems();
             return View(items);
         }
 
@@ -29,15 +29,15 @@ namespace VendingMachineTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                _itemRepository.AddItem(item);
-                return RedirectToAction("Index");
+                _itemService.addItem(item);
+                return RedirectToAction(nameof(Index));
             }
             return View(item);
         }
 
         public IActionResult Edit(int id)
         {
-            Item item = _itemRepository.GetItemById(id);
+            var item = _itemService.getItemById(id);
             if (item == null)
             {
                 return NotFound();
@@ -50,15 +50,15 @@ namespace VendingMachineTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                _itemRepository.UpdateItem(item);
-                return RedirectToAction("Index");
+                _itemService.modifyItem(item);
+                return RedirectToAction(nameof(Index));
             }
             return View(item);
         }
 
         public IActionResult Delete(int id)
         {
-            Item item = _itemRepository.GetItemById(id);
+            var item = _itemService.getItemById(id);
             if (item == null)
             {
                 return NotFound();
@@ -66,11 +66,12 @@ namespace VendingMachineTracker.Controllers
             return View(item);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            _itemRepository.DeleteItem(id);
-            return RedirectToAction("Index");
+            _itemService.removeItem(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
+
