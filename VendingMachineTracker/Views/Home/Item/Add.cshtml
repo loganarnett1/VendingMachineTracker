@@ -1,8 +1,22 @@
 ﻿@{
-    ViewData["Title"] = "Item Add";
+    ViewData["Title"] = "Add Item";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Item Add Page</p>
-</div>
+<h1>Add an Item</h1>
+
+<form asp-controller="Item" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="name" class="form-label"></label>
+        <input asp-for="name" class="text-danger" />
+    </div>
+    <div class="form-group">
+        <label asp-for="description" class="form-label"></label>
+        <textarea asp-for="description" class="text-danger"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="price" class="form-label"></label>
+        <input asp-for="price" class="text-danger" />
+    </div>
+    <button type="submit" class="btn btn-dark mr-2">Add Item</button>
+</form>
+
