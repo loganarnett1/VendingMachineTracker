@@ -44,7 +44,10 @@
             </tr>
         </tbody>
     </table>
-
+    @if (Model.vendingMachineItems.Count <= 0)
+    {
+        <p class="alert-info">No Items</p>
+    }
     <button id="addButton" type="submit" class="btn btn-primary">Add</button>
 </div>
 
