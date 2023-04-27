@@ -51,7 +51,7 @@ namespace VendingMachineTracker.Models
                 .WithOne(vmi => vmi.item)
                 .HasForeignKey(vmi => vmi.itemId)
                 .HasPrincipalKey(i => i.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

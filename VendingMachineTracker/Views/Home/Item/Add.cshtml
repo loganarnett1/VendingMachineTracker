@@ -1,8 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Item Add";
+﻿@model Item
+@{
+    ViewData["Title"] = "Add Item";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Item Add Page</p>
-</div>
+<h1>Add an Item</h1>
+
+<form asp-controller="Item" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="name" class="form-label" />
+        <input asp-for="name" class="form-control" type="text"/>
+    </div>
+    <button type="submit" class="btn btn-dark mr-2">Add Item</button>
+</form>
+
