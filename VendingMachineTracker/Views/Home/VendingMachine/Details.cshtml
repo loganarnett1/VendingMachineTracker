@@ -4,8 +4,6 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Vending Machine Details Page of id: @Model.Id</p>
     <a asp-controller="VendingMachine" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit Vending Machine</a>
     <form asp-controller="VendingMachine" asp-action="Delete" asp-route-id="@Model.Id" method="post">
         <button type="submit"
@@ -40,11 +38,17 @@
                         }
                     </select>
                 </td>
-                <td><input id="priceSelect" type="number" /></td>
+                <td>
+                <label>Quarters: </label>
+                <input id="priceSelect" type="number" />
+                </td>
             </tr>
         </tbody>
     </table>
-
+    @if (Model.vendingMachineItems.Count <= 0)
+    {
+        <p class="alert-info">No Items</p>
+    }
     <button id="addButton" type="submit" class="btn btn-primary">Add</button>
 </div>
 
