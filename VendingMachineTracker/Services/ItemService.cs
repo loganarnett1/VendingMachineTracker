@@ -28,7 +28,7 @@ namespace VendingMachineTracker.Services
         public Item modifyItem(Item item)
         {
             Item existingItem = context.items.Find(item.Id);
-            item.updateValues(item.name);
+            existingItem.updateValues(item.name);
             context.SaveChanges();
 
             return existingItem;

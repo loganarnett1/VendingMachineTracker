@@ -13,26 +13,26 @@ namespace VendingMachineTracker.Controllers
             _itemService = itemService;
         }
 
-        public IActionResult Index()
+        public IActionResult List()
         {
             var items = _itemService.getAllItems();
-            return View(items);
+            return View("Views/Home/Item/List.cshtml", items);
         }
 
         public IActionResult Add()
         {
-            return View();
+            return View("Views/Home/Item/Add.cshtml");
         }
 
         [HttpPost]
         public IActionResult Add(Item item)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 _itemService.addItem(item);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(item);
+                return RedirectToAction(nameof(List));
+            //}
+            //return View("Views/Home/Item/Add.cshtml", item);
         }
 
         public IActionResult Edit(int id)
@@ -42,18 +42,18 @@ namespace VendingMachineTracker.Controllers
             {
                 return NotFound();
             }
-            return View(item);
+            return View("Views/Home/Item/Edit.cshtml", item);
         }
 
         [HttpPost]
         public IActionResult Edit(Item item)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 _itemService.modifyItem(item);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(item);
+                return RedirectToAction(nameof(List));
+            //}
+            //return View("Views/Home/Item/Edit.cshtml", item);
         }
 
         public IActionResult Delete(int id)
@@ -63,14 +63,14 @@ namespace VendingMachineTracker.Controllers
             {
                 return NotFound();
             }
-            return View(item);
+            return View("Views/Home/Item/Delete.cshtml", item);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
             _itemService.removeItem(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(List));
         }
     }
 }
