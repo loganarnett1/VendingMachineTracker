@@ -20,11 +20,6 @@ namespace VendingMachineTracker.Controllers
 
         public IActionResult Index()
         {
-            //var abc = vendingMachineService.addVendingMachine(new VendingMachine("Vending Machine B", "Near the cafe"));
-            //var item = itemService.addItem(new Item("Test Item"));
-
-            //var abc2 = itemService.addVendingMachineItem(new VendingMachineItem(item.Id, abc.Id));
-            //var abc2 = itemService.addVendingMachineItem(new VendingMachineItem(2, 2));
             return View();
         }
         
