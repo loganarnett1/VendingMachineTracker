@@ -58,5 +58,11 @@ namespace VendingMachineTracker.Controllers
             vendingMachineService.removeVendingMachine(id);
             return RedirectToAction("List");
         }
+        [HttpPost]
+        public RedirectToActionResult RemoveVendingMachineItem(int id)
+        {
+            vendingMachineService.removeVendingMachineItem(id);
+            return RedirectToAction("List");
+        }
     }
 }
