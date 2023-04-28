@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Remove";
+}
+
+<h1>Remove</h1>
+div class="text-center">
+<h1 class="display-4">Welcome</h1>
+<p>Vending Machine Add Page</p>
+<form asp-controller="VendingMachine" asp-action="Add" method="post">
+    <div class="mb-2">
+        <label asp-for="name" class="form-label" />
+        <input asp-for="name" class="form-control" type="text" />
+        <span asp-validation-for="name" class="text-danger" />
+    </div>
+    <div class="mb-2">
+        <label asp-for="locationDescription" class="form-label" />
+        <input asp-for="locationDescription" class="form-control" type="text" />
+        <span asp-validation-for="locationDescription" class="text-danger" />
+    </div>
+    <div class="mb-2">
+        <button type="submit" class="btn btn-dark mr-2">Create</button>
+        <a asp-controller="VendingMachine" asp-action="List" class="btn btn-dark">Cancel</a>
+    </div>
+</form>
+</div>
+
